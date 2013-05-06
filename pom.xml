@@ -5,7 +5,7 @@
   <artifactId>jettycamelwebsocket</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>jettycamelwebsocket Maven Webapp</name>
+		  <name>jettycamelwebsocket Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
 
@@ -183,6 +183,15 @@
                                         <configuration>
                                                 <webApp>${basedir}/target/websocketserver-0.0.1-SNAPSHOT.war</webApp>
                                         </configuration>
+				<!-- see http://paulfeaviour.wordpress.com/2010/04/01/running-websocket-example-with-jetty-mavenplugin/--> 
+				<dependencies>
+					<dependency>
+					    <groupId>org.eclipse.jetty</groupId>
+					    <artifactId>jetty-websocket</artifactId>
+					    <version>${jetty.version}</version>
+					    <type>jar</type>
+				    </dependency>
+				</dependencies>
                                         <connectors>
                                                 <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                                                         <port>8080</port>
