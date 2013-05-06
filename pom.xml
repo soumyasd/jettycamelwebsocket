@@ -12,7 +12,7 @@
         <properties>
                 <spring.version>3.2.2.RELEASE</spring.version>
                 <camel.version>2.11.0</camel.version>
-                <jetty.version>8.1.3.v20120416</jetty.version>
+                <jetty.version>7.6.8.v20121106</jetty.version>
         </properties>
 
 
@@ -174,20 +174,15 @@
                                 <configuration>
 
                                         <scanIntervalSeconds>10</scanIntervalSeconds>
+					<!--
                                         <webAppConfig>
                                                 <contextPath>/emontage</contextPath>
                                         </webAppConfig>
+					-->
 
                                         <configuration>
-                                                <webApp>${basedir}/target/emontageserver-0.0.1-SNAPSHOT.war</webApp>
+                                                <webApp>${basedir}/target/websocketserver-0.0.1-SNAPSHOT.war</webApp>
                                         </configuration>
-<!--                                    <dependencies>
-                                                <dependency>
-                                                        <groupId>org.eclipse.jetty</groupId>
-                                                        <artifactId>jetty-websocket</artifactId>
-                                                        <version>${jetty.version}</version>
-                                                </dependency>
-                                        </dependencies> -->
                                         <connectors>
                                                 <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
                                                         <port>8080</port>
@@ -196,6 +191,24 @@
                                         </connectors>
                                 </configuration>
                         </plugin>
+
+                        <!-- This detects duplicates in the classpaths and shows a warning http://thinkinginsoftware.blogspot.com/2012/01/remove-duplicate-classes-agile-way.html -->
+                        <plugin>
+                                <groupId>com.ning.maven.plugins</groupId>
+                                <artifactId>maven-duplicate-finder-plugin</artifactId>
+                                <configuration>
+                                        <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
+                                </configuration>
+                                <executions>
+                                        <execution>
+                                                <phase>verify</phase>
+                                                <goals>
+                                                        <goal>check</goal>
+                                                </goals>
+                                        </execution>
+                                </executions>
+                        </plugin>
+
 
                 </plugins>
         </build>
