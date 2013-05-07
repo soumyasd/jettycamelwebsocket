@@ -2,15 +2,24 @@ Sample demo project to test Apache Camel Websocket component on Jetty.
 
 Following are the steps to run the application. 
 
-1. Update your Twitter credentials in this class src/main/java/demo/websocket/
+1. IMPORTANT: Update your Twitter credentials in this class src/main/java/demo/websocket/TwitterStreamRoute.java otherwise you will get an authorization exception when you start the server (and the Camel route is deployed) 
 
 2. $mvn clean install 
 
-3. $mvn jetty:run 
+3. For some reason  $mvn jetty:run  (or any other related command from the
+   jetty-maven-plugin give the expections (see below). 
+   Therefore I used the Jetty Runner
+   (http://wiki.eclipse.org/Jetty/Howto/Using_Jetty_Runner) to deploy the
+   generated war file instead. 
+    
+    $java -jar jetty-runner-7.6.8.v20121106.jar target/jettycamelwebsocket.war 
 
 4. Point your web browser (I used Google Chrome) to
    http://localhost:8080/index.html  
 
+Here is a stackoverflow discussion regarding that is relevant to this piece of
+code. 
+http://stackoverflow.com/questions/16387729/exception-running-a-simple-websocket-with-camel-component-on-jetty
 
 
 --- 
